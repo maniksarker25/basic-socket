@@ -64,14 +64,14 @@ io.on("connection",(socket)=>{
     // -----------------------------------------------------
 
     // CREATE ROOM ------------------------------------------------------------------------------------
-    socket.join("room-",+ roomNum)
-    io.sockets.in("room-",+ roomNum).emit("connectedRoom",`You are connected to room no ${roomNum}`);
-    // handle room people limit and create new room when the room is full-------------
-    full++;
-    if(full >= 2){
-            full = 0;
-            roomNum++;
-    }
+    // socket.join("room-",+ roomNum)
+    // io.sockets.in("room-",+ roomNum).emit("connectedRoom",`You are connected to room no ${roomNum}`);
+    // // handle room people limit and create new room when the room is full-------------
+    // full++;
+    // if(full >= 2){
+    //         full = 0;
+    //         roomNum++;
+    // }
     //-----------------------------------------------------
 
     socket.on("disconnect",()=>{
