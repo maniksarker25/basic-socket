@@ -16,7 +16,19 @@ app.get("/",(req,res)=>{
 
 let users = 0;
 
+
 // socket connection 
+
+// the socket defaul name space is "/". name speace mean the endpoint/path . now we want to make custome name speace
+
+// costume name space 
+const cnsp = io.of("/custome-namespace");
+
+// now we can use hee this custome name space ----------
+
+// custome name space-------
+// cnsp.on("connection",(socket)=>{
+// default name space --------
 io.on("connection",(socket)=>{
     console.log("A user connected")
 
