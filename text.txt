@@ -13,3 +13,6 @@ Room , simple room and create multiple room with their limits
 
 Error handling 
 What are the events for error handling
+
+
+Connect client socket.io to multiple servers
