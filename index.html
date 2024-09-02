@@ -36,11 +36,18 @@
         //     document.body.innerHTML = '';
         //     document.write(data.message)
         // })
-        // show for all user expect new user
-        socket.on("newUserConnect",(data)=>{
-            document.body.innerHTML = '';
-            document.write(data.message)
+        // show for all user expect new user---------------------------------------
+        // socket.on("newUserConnect",(data)=>{
+        //     document.body.innerHTML = '';
+        //     document.write(data.message)
+        // })
+
+        // ROOM ---------------------------------------------------------------------------------
+        socket.on("connectedRoom",(data)=>{
+                document.body.innerHTML = "";
+                document.write(data)
         })
+
     </script>
 </body>
 </html>

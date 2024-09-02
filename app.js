@@ -15,7 +15,8 @@ app.get("/",(req,res)=>{
 })
 
 let users = 0;
-
+let roomNum = 1;
+let full = 0;
 
 // socket connection 
 
@@ -56,11 +57,22 @@ io.on("connection",(socket)=>{
     users++;
     // use for show user total number for all user--------
     // io.sockets.emit("broadcast",{message:users + "user connected"})
-    // send welcome message to new user
-    socket.emit("newUserConnect",{message:"Hi Welcome Dear!"})
-    // only show total number of user in other user and new user
-    socket.broadcast.emit("newUserConnect",{message:users + " "  + "User connected"})
+    // send welcome message to new user--------------------
+    // socket.emit("newUserConnect",{message:"Hi Welcome Dear!"})
+    // only show total number of user in other user and new user---------------
+    // socket.broadcast.emit("newUserConnect",{message:users + " "  + "User connected"})
+    // -----------------------------------------------------
 
+    // CREATE ROOM ------------------------------------------------------------------------------------
+    socket.join("room-",+ roomNum)
+    io.sockets.in("room-",+ roomNum).emit("connectedRoom",`You are connected to room no ${roomNum}`);
+    // handle room people limit and create new room when the room is full-------------
+    full++;
+    if(full >= 2){
+            full = 0;
+            roomNum++;
+    }
+    //-----------------------------------------------------
 
     socket.on("disconnect",()=>{
         console.log("A user is disconnected")
