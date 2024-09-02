@@ -14,28 +14,43 @@ app.get("/",(req,res)=>{
 
 })
 
+let users = 0;
+
 // socket connection 
 io.on("connection",(socket)=>{
     console.log("A user connected")
+
 
     // create prereserved event--------
     // setTimeout(() => {
     //     socket.send("Sent message from server side by prereserved events")
     // }, 3000);
 
+    // EVENTS---------------------------------------------------------------------------------
     //create costume events -------------------
-    setTimeout(() => {
-        socket.emit("myCustomeEvent",{
-            description:"A custome message from server side "
-        })
-    }, 3000);
+    // setTimeout(() => {
+    //     socket.emit("myCustomeEvent",{
+    //         description:"A custome message from server side "
+    //     })
+    // }, 3000);
 
-    // catch custome event
-    socket.on("myCustomeEventFromClient",(data)=>{
-        console.log(data)
-    })
+    // catch custome event-------------------
+    // socket.on("myCustomeEventFromClient",(data)=>{
+    //     console.log(data)
+    // })
+    //-------------------------------------------------------------------------------------------
+
+    // BROADCASTING-------------------------------------------------------------------------------
+    users++;
+    io.sockets.emit("broadcast",{message:users + "user connected"})
+
+
     socket.on("disconnect",()=>{
         console.log("A user is disconnected")
+        
+       // BROADCASTING-------------------------------------------------------------------------------
+        users--;
+        io.sockets.emit("broadcast",{message:users + "user connected"})
     })
 })
 

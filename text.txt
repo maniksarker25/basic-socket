@@ -1,0 +1,7 @@
+Create costume event =>
+1. Costume event create on server side and catch on client side 
+2.Costume event creat on client side and catch on server side
+
+Broadcasting
+1.User can see how many user connected 
+2.If user connected , then we will send a welcome message to user and other users can see how many user connected

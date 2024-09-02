@@ -11,16 +11,27 @@
 
     <script>
         const socket = io();
+        //EVENTS ----------------------------------------------------------------------------
         // catch prereserved event------------
         // socket.on("message",(data)=>{
         //     document.write(data)
         // })
         // catch custome event -------------
-        socket.on("myCustomeEvent",(data)=>{
-            document.write(data.description)
-        })
+        // socket.on("myCustomeEvent",(data)=>{
+        //     document.write(data.description)
+        // })
+   
+
         // create custome event 
-        socket.emit("myCustomeEventFromClient","A custome event message sent from client side")
+        // socket.emit("myCustomeEventFromClient","A custome event message sent from client side")
+    
+        //------------------------------------------------------------------------------------
+
+        // CATCH BROADCAST 
+        socket.on("broadcast",(data)=>{
+            document.body.innerHTML = '';
+            document.write(data.message)
+        })
     </script>
 </body>
 </html>
