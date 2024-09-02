@@ -28,7 +28,13 @@
         //------------------------------------------------------------------------------------
 
         // CATCH BROADCAST 
-        socket.on("broadcast",(data)=>{
+        // show for all user ----------------------------
+        // socket.on("broadcast",(data)=>{
+        //     document.body.innerHTML = '';
+        //     document.write(data.message)
+        // })
+        // show for all user expect new user
+        socket.on("newUserConnect",(data)=>{
             document.body.innerHTML = '';
             document.write(data.message)
         })

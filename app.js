@@ -42,15 +42,22 @@ io.on("connection",(socket)=>{
 
     // BROADCASTING-------------------------------------------------------------------------------
     users++;
-    io.sockets.emit("broadcast",{message:users + "user connected"})
+    // use for show user total number for all user--------
+    // io.sockets.emit("broadcast",{message:users + "user connected"})
+    // send welcome message to new user
+    socket.emit("newUserConnect",{message:"Hi Welcome Dear!"})
+    // only show total number of user in other user and new user
+    socket.broadcast.emit("newUserConnect",{message:users + " "  + "User connected"})
 
 
     socket.on("disconnect",()=>{
         console.log("A user is disconnected")
-        
+
        // BROADCASTING-------------------------------------------------------------------------------
         users--;
-        io.sockets.emit("broadcast",{message:users + "user connected"})
+        // this is for all ------
+        // io.sockets.emit("broadcast",{message:users + "user connected"})
+        socket.broadcast.emit("newUserConnect",{message:users + " " +  "User connected"})
     })
 })
 
